@@ -40,9 +40,15 @@ The Second part is the student data. Since we are unable to get the actual stude
 We’ll store student, course, professor, enrollment, and account information into our database. 
 
 ### Basic Functions 
-Our website will allow students to search, register, and drop classes; allow administrators to perform any tasks(including delete course, overwrite registration, etc). Other than these, we plan to add multiple components to our website to help students make decisions. First, students can search courses with CRN, course name, department, etc. Once the students find a course, we will provide them with professor’s information, course information. If students select the course, our application will allow students to visualize the current schedule with their other courses. With this functionality, we think we will be able to give our students a great experience.
-
+Our website will allow students to search, register, and drop classes; allow administrators to perform any tasks(including delete course, overwrite registration, etc). 
 ### Creative Component
+
+We plan to add multiple components to our system to help students make decisions while browsing courses. 
+- Our system allow keyword search and advanced search. If students are casually looking for some courses that they are interested in, they can use keyword search and type in any related words. If they know what they need, they can do advanced search by selecting CRN, department, etc.
+- The system will provide all of the information related to the courses. Once students find a course they're intereted in, we will provide them with professor’s information and course information, such as ratings and GPA distribution. 
+- Our system also helps student manage their schedule. If students select the course, our system will allow students to visualize the current calendar. 
+
+With these functionalities, we think we will be able to give our students a great experience.
 
 
 ### Web Page:
