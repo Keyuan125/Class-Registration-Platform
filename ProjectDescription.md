@@ -56,7 +56,8 @@ With these functionalities, we think we will be able to give our students a grea
 
 This is the search result page. On this page, students can access the professor's page by clicking his/her name. Once the student chooses a course, a calendar will pop up from the right to allow the student to visualize the current schedule. 
 
-### Work Distribution(Subject to change): 
+
+## Work Distribution(Subject to change): 
 - Database Design: *Ziyue Guo* 
    - Design database schema, import data 
 - Process Data: *Yiyan Wang*
