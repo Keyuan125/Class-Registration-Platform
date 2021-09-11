@@ -59,15 +59,15 @@ This is the search result page. On this page, students can access the professor'
 ### Work Distribution(Subject to change):
 
 
-#### Database Design: Ziyue Guo
-Design database schema, import data 
-#### Process Data: Yiyan Wang
-Pull data from school website, generate fake student and enrollment information
-#### UI Design: Keyuan Huang
-Design web page, create web application with framework
-#### Database operation: Ziyue Guo
-Create a simple user interface that performs CRUD
-#### Search : Yiyan Wang
-Create UI that performs search function
-#### Other: Keyuan Huang
-Connect database to front-end and host it on GCP
+- Database Design: Ziyue Guo
+   - Design database schema, import data 
+- Process Data: Yiyan Wang
+   - Pull data from school website, generate fake student and enrollment information
+- UI Design: Keyuan Huang
+   - Design web page, create web application with framework
+- Database operation: Ziyue Guo
+   - Create a simple user interface that performs CRUD
+- Search : Yiyan Wang
+   - Create UI that performs search function
+- Other: Keyuan Huang
+   - Connect database to front-end and host it on GCP
