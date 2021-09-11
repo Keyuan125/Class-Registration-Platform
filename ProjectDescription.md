@@ -40,12 +40,12 @@ The Second part is the student data. Since we are unable to get the actual stude
 We’ll store student, course, professor, enrollment, and account information into our database. 
 
 ### Basic Functions 
-Our website will allow students to search, register, and drop classes; allow administrators to perform any tasks(including delete course, overwrite registration, etc). 
+Our website will allow students to search, register, and drop classes; allow administrators to perform any tasks(including delete a course, overwrite registration, etc). 
 ### Creative Component
 
 We plan to add multiple components to our system to help students make decisions while browsing courses. 
-- Our system allow keyword search and advanced search. If students are casually looking for some courses that they are interested in, they can use keyword search and type in any related words. If they know what they need, they can do advanced search by selecting CRN, department, etc.
-- The system will provide all of the information related to the courses. Once students find a course they're intereted in, we will provide them with professor’s information and course information, such as ratings and GPA distribution. 
+- Our system allows keyword search and advanced search. If students are casually looking for some courses that they are interested in, they can use keyword search and type in any related words. If they know what they need, they can do advanced searches by selecting CRN, department, etc.
+- The system will provide all of the information related to the courses. Once students find a course they're interested in, we will provide them with professor’s information and course information, such as ratings and GPA distribution. 
 - Our system also helps student manage their schedule. If students select the course, our system will allow students to visualize the current calendar. 
 
 With these functionalities, we think we will be able to give our students a great experience.
@@ -56,6 +56,18 @@ With these functionalities, we think we will be able to give our students a grea
 
 This is the search result page. On this page, students can access the professor's page by clicking his/her name. Once the student chooses a course, a calendar will pop up from the right to allow the student to visualize the current schedule. 
 
-## Work Distribution:
+### Work Distribution(Subject to change):
 
-TBD
+
+#### Database Design: Ziyue Guo
+Design database schema, import data 
+#### Process Data: Yiyan Wang
+Pull data from school website, generate fake student and enrollment information
+#### UI Design: Keyuan Huang
+Design web page, create web application with framework
+#### Database operation: Ziyue Guo
+Create a simple user interface that performs CRUD
+#### Search : Yiyan Wang
+Create UI that performs search function
+#### Other: Keyuan Huang
+Connect database to front-end and host it on GCP
