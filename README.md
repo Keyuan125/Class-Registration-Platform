@@ -11,7 +11,7 @@
 
 ## Project Summary
 
-A brand new course registration platform that allows students to register in an easy and intuitive way. With our platform, students can easily access class descriptions, professor’s intro, and any other information that they need before choosing a class. While selecting a class, students are also able to visualize their current calendar to check if there is a conflict. Additionally, our platform also allows administrators to maintain and update the course information.
+We don’t like the course registration page that we are currently using in UIUC. We think it’s outdated and most of the user interface is not intuitive enough for a new student to use. Therefore, we decided to build a more modern version of it. With our project, we aim to provide more comprehensive information to the student to help them make decisions. 
 
 [Link to Our Project Description](https://github.com/uiuc-fa21-cs411/the-lab-rats/blob/main/ProjectDescription.md)
 
