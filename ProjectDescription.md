@@ -42,8 +42,11 @@ We’ll store student, course, professor, enrollment, and account information in
 ### Basic Functions 
 Our website will allow students to search, register, and drop classes; allow administrators to perform any tasks(including delete course, overwrite registration, etc). Other than these, we plan to add multiple components to our website to help students make decisions. First, students can search courses with CRN, course name, department, etc. Once the students find a course, we will provide them with professor’s information, course information. If students select the course, our application will allow students to visualize the current schedule with their other courses. With this functionality, we think we will be able to give our students a great experience.
 
-### Web Page:
+### Creative Component
 
+
+### Web Page:
+![Web Page](images/lowfi.jpg)
 
 ## Work Distribution:
 
