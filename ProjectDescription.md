@@ -56,18 +56,17 @@ With these functionalities, we think we will be able to give our students a grea
 
 This is the search result page. On this page, students can access the professor's page by clicking his/her name. Once the student chooses a course, a calendar will pop up from the right to allow the student to visualize the current schedule. 
 
-### Work Distribution(Subject to change):
-
-
-- Database Design: Ziyue Guo
+### Work Distribution(Subject to change): 
+- Database Design: *Ziyue Guo* 
    - Design database schema, import data 
-- Process Data: Yiyan Wang
+- Process Data: *Yiyan Wang*
    - Pull data from school website, generate fake student and enrollment information
-- UI Design: Keyuan Huang
+- UI Design: *Keyuan Huang*
    - Design web page, create web application with framework
-- Database operation: Ziyue Guo
+- Database operation: *Ziyue Guo*
    - Create a simple user interface that performs CRUD
-- Search : Yiyan Wang
+- Search : *Yiyan Wang*
    - Create UI that performs search function
-- Other: Keyuan Huang
+- Other: *Keyuan Huang*
    - Connect database to front-end and host it on GCP
+ 
