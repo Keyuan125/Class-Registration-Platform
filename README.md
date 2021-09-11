@@ -6,7 +6,6 @@
    - Keyuan Huang (keyuanh2@illinois.edu)
    - Ziyue Guo (ziyueg5@illinois.edu)
    - Yiyan Wang (yiyanw3@illinois.edu)  
-   - Shujing Yang (shujing6@illinois.edu)
 - Captain: Keyuan Huang
 - Project Title: TBD
 
