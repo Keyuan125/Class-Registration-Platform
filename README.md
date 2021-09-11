@@ -13,7 +13,7 @@
 
 A brand new course registration platform that allows students to register in an easy and intuitive way. With our platform, students can easily access class descriptions, professor’s intro, and any other information that they need before choosing a class. While selecting a class, students are also able to visualize their current calendar to check if there is a conflict. Additionally, our platform also allows administrators to maintain and update the course information.
 
-[Link to Project Description](https://github.com)
+[Link to Our Project Description](https://github.com/uiuc-fa21-cs411/the-lab-rats/blob/main/ProjectDescription.md)
 
 ## System Demo URL
 
