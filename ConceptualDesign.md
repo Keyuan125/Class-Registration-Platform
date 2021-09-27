@@ -39,7 +39,12 @@ In (PID INT [PK] [FK to Professor.PID], Department_ID INT [PK] [FK to Department
 
 Teach (PID INT [PK] [FK to Professor.PID], CRN INT [PK] [FK to Course.CRN]);
 
-## Assumptions and description
+## Description and Assumption
 
-
+1. **Account** - Account table stores all the login information, including the students and the administrators. Each user will get a unique AccountID(AID) when they sign up. Every student can only have one account in our platform.
+2. **Student** - Each student is uniquely identified by studentID, which is the same as the UID that we currently have. We think that every student might have different majors offered by different department.
+3. **Department** - Department table stores all the department in our college. Each department is uniquely indentified by it's departmentID
+4. **Professor** - Professor is uniquely identified by ProfessorID(PID), we assume that professor can work for multiple different departments at the same time.
+5. **Course** - Each course is uniquely identified by Course Registration Number(CRN). Every department will offer any number of courses, every professor can 
+teach any number of courses in one single semester. Student can enroll in multiple courses in each semester. We assume for some high level courses, there might be any number of prerequisite courses. 
 
