@@ -17,11 +17,11 @@
 
 Student (Student_ID INT [PK], Student_Name VARCHAR(100), birth DATE, AID INT [FK to Account.AID]);
 
-Department (Department_ID INT [PK], Department_Name VARCHAR(100), Department_ID INT [PK] [FK to Department.Department_ID]);
+Department (Department_ID INT [PK], Department_Name VARCHAR(100));
 
 Account (AID INT [PK], username VARCHAR(100), password VARCHAR(100), Role VARCHAR(100));
 
-Course (CRN INT [PK], Course_Name VARCHAR(100), Professor VARCHAR(100));
+Course (CRN INT [PK], Course_Name VARCHAR(100), Professor VARCHAR(100), Department_ID INT [FK to Department.Department_ID]);
 
 Professor (PID INT [PK], Professor_Name VARCHAR(100), info VARCHAR(100));
 
