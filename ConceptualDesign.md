@@ -15,7 +15,7 @@
 
 ## Relational Schema
 
-Student (Student_ID INT [PK], Student_Name VARCHAR(100), birth DATE);
+Student (Student_ID INT [PK], Student_Name VARCHAR(100), birth DATE, AID INT [PK] [FK to Account.AID]);
 
 Department (Department_ID INT [PK], Department_Name VARCHAR(100));
 
@@ -26,8 +26,6 @@ Course (CRN INT [PK], Course_Name VARCHAR(100), Professor VARCHAR(100));
 Professor (PID INT [PK], Professor_Name VARCHAR(100), info VARCHAR(100));
 
 Belong_to (Department_ID INT [PK] [FK to Department.Department_ID], Student_ID INT [PK] [FK to Student.Student_ID]);
-
-Is (Student_ID INT [PK] [FK to Student.Student_ID], AID INT [PK] [FK to Account.AID]);
 
 Enroll_in (Student_ID INT [PK] [FK to Student.Student_ID], CRN INT [PK] [FK to Course.CRN]);
 
