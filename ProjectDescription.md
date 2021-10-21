@@ -40,7 +40,7 @@ The Second part is the student data. Since we are unable to get the actual stude
 We’ll store student, course, professor, enrollment, and account information into our database. 
 
 ### Basic Functions 
-~~Our website will allow students to search, register, and drop classes; allow administrators to perform any tasks(including delete a course, overwrite registration, etc). ~~
+~~Our website will allow students to search, register, and drop classes; allow administrators to perform any tasks(including delete a course, overwrite registration, etc)~~
 - Allow students and administrators to log in to our registration platform
 - Students will be able to search, register, and drop classes
 - Administrators are able to perform any tasks(including delete a course, overwrite registration, etc).
