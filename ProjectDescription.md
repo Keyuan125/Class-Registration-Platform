@@ -28,7 +28,7 @@ Similar to the registration system we currently have, ours will allow students t
 
 Our data consists of two parts:
 
-First, to simulate the actual course registration system we currently have, we will take the course and professor information from our university website. In order to obtain the data, we’ll either do web scraping or manually input all the information. 
+First, to simulate the actual course registration system we currently have, we will take the course and professor information from our university website. ~~In order to obtain the data, we’ll either do web scraping or manually input all the information~~ We'll utilize the [course explorer api](https://courses.illinois.edu/cisdocs/explorer), which allows us to retrieve course information each semester.
 
 The Second part is the student data. Since we are unable to get the actual student information, we plan to generate fake student data with some API, such as [Faker](https://faker.readthedocs.io/en/master/), and randomly assign them to different courses. 
 
