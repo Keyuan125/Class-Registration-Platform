@@ -137,7 +137,7 @@ LIMIT 15;
 <img src = "./images/index2.png" width = "60%">
 - Index on 'DaysofWeek' and 'StartTime' in Courses Table:
 <img src = "./images/index3.png" width = "60%">
-- Analyze: Among all the indexing selection, the second one, which creates index on 'StartTime' in the courses table gives best result with this query. The performance of third and forth indexing design are similar to the baseline. Therefore, we decided to choose our table on 'StartTime'.
+- Analyze: Among all the indexing selection, the second one, which creates index on 'StartTime' in the courses table gives best result with this query. The performance of third and forth indexing design are similar to the baseline. Therefore, we decided to choose our table on 'StartTime'. This is because, as in the 'where' clause, we need the courses start in the morning, which makes the result concentrate the start time in that time period.
 
 ### Query 2
 ```SQL
