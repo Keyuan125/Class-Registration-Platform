@@ -128,6 +128,8 @@ WHERE UIN IN (SELECT UIN
 LIMIT 15;
 ```
 
+<img src = "./images/Query/q1.png" width = "60%">
+
 *
 ```SQL
 SELECT DISTINCT FirstName, LastName, SUM(Courses.Credits)
@@ -137,3 +139,5 @@ GROUP BY FirstName, LastName
 HAVING SUM(Courses.Credits) > 0
 LIMIT 15;
 ```
+
+<img src = "./images/Query/q2.png" width = "60%">
