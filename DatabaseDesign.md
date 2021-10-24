@@ -158,4 +158,4 @@ LIMIT 15;
 - Index on 'DaysofWeek' in Course Table:
 <img src = "./images/index4.png" width = "60%">
 - Index on 'DaysofWeek' and 'StartTime' in Courses Table:
-<img src = "./images/index5.PNG" width = "60%">
+<img src = "./images/index6.png" width = "60%">
