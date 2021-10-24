@@ -130,9 +130,9 @@ LIMIT 15;
 
 <img src = "./images/Query/q1.png" width = "60%">
 - Baseline:
-<img src = "./images/baseline.png" width = "60%">
+<img src = "./images/baseline.PNG" width = "60%">
 - Index on 'StartTime' in Courses Table:
-<img src = "./images/index1.png" width = "60%">
+<img src = "./images/index1.PNG" width = "60%">
 
 ### Query 2
 ```SQL
