@@ -133,6 +133,10 @@ LIMIT 15;
 <img src = "./images/baseline.PNG" width = "60%">
 - Index on 'StartTime' in Courses Table:
 <img src = "./images/index1.PNG" width = "60%">
+- Index on 'DaysofWeek' in Course Table:
+<img src = "./images/index2.PNG" width = "60%">
+- Index on 'DaysofWeek' and 'StartTime' in Courses Table:
+<img src = "./images/index3.PNG" width = "60%">
 
 ### Query 2
 ```SQL
