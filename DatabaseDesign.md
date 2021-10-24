@@ -153,9 +153,10 @@ LIMIT 15;
 
 - Baseline:
 <img src = "./images/baselineq2.png" width = "60%">
-- Index on 'StartTime' in Courses Table:
+- Index on 'Credits' in Courses Table:
 <img src = "./images/index3.png" width = "60%">
-- Index on 'DaysofWeek' in Course Table:
+- Index on 'Number' in Course Table:
 <img src = "./images/index4.png" width = "60%">
-- Index on 'DaysofWeek' and 'StartTime' in Courses Table:
+- Index on 'Credits' and 'Number' in Courses Table:
 <img src = "./images/index6.png" width = "60%">
+- Analyze: This time, all other indexing design give a similar performance. The baseline gives best result with this query. Therefore, we'll choose the baseline as our indexing design.
