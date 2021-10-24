@@ -115,7 +115,7 @@ CREATE TABLE Professor (
 
 
 ## Advanced SQL queries
-*
+### Query 1
 ```SQL
 SELECT DISTINCT FirstName, LastName 
 FROM Students 
@@ -129,8 +129,12 @@ LIMIT 15;
 ```
 
 <img src = "./images/Query/q1.png" width = "60%">
+- Baseline:
+<img src = "./images/baseline.png" width = "60%">
+- Index on 'StartTime' in Courses Table:
+<img src = "./images/index1.png" width = "60%">
 
-*
+### Query 2
 ```SQL
 SELECT DISTINCT FirstName, LastName, SUM(Courses.Credits)
 FROM Students NATURAL JOIN Enrollments JOIN Courses on Enrollments.CRN = Courses.CRN 
