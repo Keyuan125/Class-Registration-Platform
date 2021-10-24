@@ -101,7 +101,7 @@ CREATE TABLE Professor (
 ```
  * Corresponding Insert DDLs
 
-Tables with Records over 1,000
+## Tables with Records over 1,000
 
 <img src = "./images/DDL/Courses.png" width = "40%">
 
