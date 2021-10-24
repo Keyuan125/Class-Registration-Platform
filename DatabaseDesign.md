@@ -48,3 +48,16 @@ CREATE TABLE Professor (
     Department VARCHAR(50)
 );
 ```
+ * Corresponding Insert DDLs
+
+Tables with Records over 1,000
+
+![Courses](./images/DDL/Courses.png)
+
+![Enrollments](./images/DDL/Enrollments.png)
+
+![Students](./images/DDL/Students.png)
+
+![Professors](./images/DDL/Professor.png)
+
+![ProfessorCourseGPA](./images/DDL/ProfessorCourseGPA.png)
