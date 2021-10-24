@@ -52,12 +52,12 @@ CREATE TABLE Professor (
 
 Tables with Records over 1,000
 
-![Courses](./images/DDL/Courses.png)
+<img src = "./images/DDL/Courses.png" width = "40%">
 
-![Enrollments](./images/DDL/Enrollments.png)
+<img src = "./images/DDL/Enrollments.png" width = "40%">
 
-![Students](./images/DDL/Students.png)
+<img src = "./images/DDL/Students.png" width = "40%">
 
-![Professors](./images/DDL/Professor.png)
+<img src = "./images/DDL/Professor.png" width = "40%">
 
-![ProfessorCourseGPA](./images/DDL/ProfessorCourseGPA.png)
+<img src = "./images/DDL/ProfessorCourseGPA.png" width = "40%">
