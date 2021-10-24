@@ -17,7 +17,8 @@ We don’t like the course registration page that we are currently using in UIUC
 
 ## Conceptual and Logical Database Design
 
-[Link to our database design](https://github.com/uiuc-fa21-cs411/the-lab-rats/blob/main/ConceptualDesign.md)
+[Link to our conceptual database design](https://github.com/uiuc-fa21-cs411/the-lab-rats/blob/main/ConceptualDesign.md)
+[Link to our database implementation](https://github.com/uiuc-fa21-cs411/the-lab-rats/blob/main/DatabaseDesign.md)
 
 ## System Demo URL
 
