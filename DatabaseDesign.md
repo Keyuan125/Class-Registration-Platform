@@ -112,3 +112,28 @@ CREATE TABLE Professor (
 <img src = "./images/DDL/Professor.png" width = "40%">
 
 <img src = "./images/DDL/ProfessorCourseGPA.png" width = "40%">
+
+
+## Advanced SQL queries
+*
+```SQL
+SELECT DISTINCT FirstName, LastName 
+FROM Students 
+WHERE UIN IN (SELECT UIN 
+              FROM Enrollments E 
+              INNER JOIN Courses C ON E.CRN = C.CRN 
+              WHERE DaysofWeek LIKE "%R%" OR StartTime LIKE "%AM%" 
+              GROUP BY UIN
+              HAVING COUNT(E.CRN) > 2)
+LIMIT 15;
+```
+
+*
+```SQL
+SELECT DISTINCT FirstName, LastName, SUM(Courses.Credits)
+FROM Students NATURAL JOIN Enrollments JOIN Courses on Enrollments.CRN = Courses.CRN 
+WHERE Courses.Number >= 400
+GROUP BY FirstName, LastName
+HAVING SUM(Courses.Credits) > 0
+LIMIT 15;
+```
