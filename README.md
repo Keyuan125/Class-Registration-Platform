@@ -21,6 +21,10 @@ We don’t like the course registration page that we are currently using in UIUC
 
 [Link to our database implementation](https://github.com/uiuc-fa21-cs411/the-lab-rats/blob/main/DatabaseDesign.md)
 
+## Project Repository
+
+[Link to our project repository](https://github.com/Keyuan125/Class_register_platform)
+
 ## System Demo URL
 
 TBD
