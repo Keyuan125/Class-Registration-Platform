@@ -1,0 +1,32 @@
+body {
+    background-color: #00008B
+}
+
+.input-group {
+    background-color: #fff;
+    padding: 15px;
+    border: none;
+}
+
+.input-box {
+    position: relative;
+    width: 50%
+}
+
+.border-bottom {
+    border-bottom: 2px solid #eee
+}
+
+.h1, h2 {
+    padding: 20px
+}
+
+
+img {
+    max-width: 20%;
+}
+
+.navbar-custom {
+    background-color: #FF5500;
+}
+

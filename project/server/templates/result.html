@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+   <head>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <link rel="stylesheet" type="text/css" href="/static/css/result.css">
+   </head>
+   <body>
+      {% if  search != None and search|length > 0 %}
+         <div class="h3 text-center"> Search Result: </div>
+               {% for value in search %}
+               <!-- <div class="radio">
+                  <label><input type="radio" name="optradio" id="{{value[0]}}"  } checked>{{ value[4]+value[5]|string+value[6]+value[8]+value[12] }}</label>
+                </div> -->
+                  <div class="card text-center">
+                     <div class="card-header">
+                        {{"CRN: " + value[0]|string}}
+                     </div>
+                     <div class="card-body">
+                        <h4 class="card-title">
+                        {% if value[12]|string == "nan" %}
+                           {{value[4] + " " + value[5]|string + " -- " + value[6]}}
+                        {% else %}
+                           {{value[4] + " " + value[5]|string + ":" + value[12] + " -- " + value[6]}}
+                        {% endif %}
+                        </h4>
+                     <p class="card-text">{{value[7]}}</p>
+                        <form action="/enroll" method="POST">
+                           <button name="enrollBtn" class="btn btn-primary" type="submit hidden" class="btn btn-outline-primary" value="{{value[0]|string}}" >Enroll</button>
+                        </from>
+                     </div>
+                     <div class="card-footer text-muted">
+                        {% if value[-1] == "nan" %}
+                           Instructor: TBD
+                        {% else %}
+                           {{value[-1]}}
+                        {% endif %}
+                     </div>
+                  </div>
+               {% endfor %}
+      {% elif search != None and search|length == 0 %}
+               <p class="h2 text-center"> No courses found! </p>
+      {% endif %}
+   </body>
+</html>
