@@ -11,7 +11,7 @@
 
 ## ER/UML Diagram
 
-![Web Page](images/ER2.png)
+![Web Page](images/ER3.png)
 
 ## Relational Schema
 
@@ -34,6 +34,11 @@ Enroll_in (UIN INT [NOT NULL] [PK] [FK To Students.UIN], CRN INT [NOT NULL] [PK]
 2. **Student** - Each student is uniquely identified by UIN. We think that every student might have different majors offered by different department.
 3. **Professor** - Professor is uniquely identified by NetId.
 4. **Course** - Each course is uniquely identified by Course Registration Number(CRN), Year, and Term. Every professor can 
-teach any number of courses in one single semester. And some course might be taught by more than one professor. Student can enroll in multiple courses in each semester. 
+teach any number of courses in one single semester. Student can enroll in multiple courses in each semester. 
 5. **GPA** - This table stores the GPA information of each course. Each GPA information is uniquely identified by CourseSubject, CourseNumber, Section, and the Professor NetId. 
 
+### Relation Description and Assumption 
+1. ** Own by  (Both Student and Professor)** - Every account is own by either student or professor (We treat professor as administrator in our project).
+2. ** Enroll in ** - Every student can enroll in multiple courses and multiple students can be enrolled in one courses.
+3. ** Tought by ** - Each course is tought by professor. We assume that every course can only be taught by at most one professor, and one professor can teach multiple courses.
+4. ** Has_information ** - Each course will have GPA information related to that course. There exists some new course that doesn't have any information yet. 
