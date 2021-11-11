@@ -37,7 +37,14 @@ The Second part is the student data. Since we are unable to get the actual stude
 ## Functionalities
 
 ### Data Stored
-We’ll store student, course, professor, enrollment, and account information into our database. 
+We’ll store student, course, professor, enrollment, GPA and account information into our database. 
+
+- student: basic information about the students, such as NetId, UIN, Department
+- account: login information, such as NetId, password and user's role
+- course: course information from course explorer
+- professor: such as communication methods, personal website from college websites
+- enrollent: a record of students' course selection
+- GPA: GPA distribution of the professor's previous courses
 
 ### Basic Functions 
 ~~Our website will allow students to search, register, and drop classes; allow administrators to perform any tasks(including delete a course, overwrite registration, etc)~~
