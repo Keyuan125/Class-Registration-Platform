@@ -29,6 +29,7 @@ Enroll_in (UIN INT [NOT NULL] [PK] [FK To Students.UIN], CRN INT [NOT NULL] [PK]
 
 ## Description and Assumption
 
+### Table Description and Assumption 
 1. **Account** - Account table stores all the login information, including the students and the professor (Administrator). Each user will get a unique NetId when they sign up. Every student can only have one account in our platform.
 2. **Student** - Each student is uniquely identified by UIN. We think that every student might have different majors offered by different department.
 3. **Professor** - Professor is uniquely identified by NetId.
