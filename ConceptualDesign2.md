@@ -38,7 +38,7 @@ teach any number of courses in one single semester. Student can enroll in multip
 5. **GPA** - This table stores the GPA information of each course. Each GPA information is uniquely identified by CourseSubject, CourseNumber, Section, and the Professor NetId. 
 
 ### Relation Description and Assumption 
-1. ** Own by  (Both Student and Professor)** - Every account is own by either student or professor (We treat professor as administrator in our project).
-2. ** Enroll in ** - Every student can enroll in multiple courses and multiple students can be enrolled in one courses.
-3. ** Tought by ** - Each course is tought by professor. We assume that every course can only be taught by at most one professor, and one professor can teach multiple courses.
-4. ** Has_information ** - Each course will have GPA information related to that course. There exists some new course that doesn't have any information yet. 
+1. **Own by  (Both Student and Professor)** - Every account is own by either student or professor (We treat professor as administrator in our project).
+2. **Enroll in ** - Every student can enroll in multiple courses and multiple students can be enrolled in one courses.
+3. **Tought by ** - Each course is tought by professor. We assume that every course can only be taught by at most one professor, and one professor can teach multiple courses.
+4. **Has_information ** - Each course will have GPA information related to that course. There exists some new course that doesn't have any information yet. 
