@@ -11,7 +11,7 @@
 
 ## ER/UML Diagram
 
-![Web Page](images/er.PNG)
+![Web Page](images/ER2.PNG)
 
 ## Relational Schema
 
