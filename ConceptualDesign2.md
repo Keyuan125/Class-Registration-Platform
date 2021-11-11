@@ -15,32 +15,24 @@
 
 ## Relational Schema
 
-Student (Student_ID INT [PK], Student_Name VARCHAR(100), birth DATE, AID INT [FK to Account.AID]);
+Account (NetId VARCHAR(50) [PK] [NOT NULL] , Password VARCHAR(50) [NOT NULL], Role INT);
 
-Department (Department_ID INT [PK], Department_Name VARCHAR(100));
+Students (UIN INT [PK] [NOT NULL], NetId VARCHAR(50) [NOT NULL] [FK to Account.NetId], FirstName VARCHAR(50), LastName VARCHAR(50), Birthday VARCHAR(50), Grade DECIMAL(10, 2));
 
-Account (AID INT [PK], username VARCHAR(100), password VARCHAR(100), Role VARCHAR(100));
+Professor (NetId VARCHAR(50) [PK] [NOT NULL] [FK to Account.NetId], FirstName VARCHAR(50), LastName VARCHAR(50), Phone VARCHAR(50), Email VARCHAR(50), URL TEXT, Department VARCHAR(50));
 
-Course (CRN INT [PK], Course_Name VARCHAR(100), Professor VARCHAR(100), Department_ID INT [FK to Department.Department_ID]);
+Courses (CRN INT [NOT NULL] [PK], Year INT [NOT NULL], Term VARCHAR(10) [NOT NULL], Subject VARCHAR(50), Number INT, Name TEXT, Description, TEXT, Credits, TEXT, Status CHAR(1), PartofTerm CHAR(1), EnrollmentsStatus VARCHAR(40), Type VARCHAR(15), StartTime VARCHAR(15), EndTime VARCHAR(15), DaysofWeek VARCHAR(5), Room VARCHAR(5), Building VARCHAR(100), Instructors VARCHAR(50), NetId VARCHAR(50) [FK to Professor.NetId]);
 
-Professor (PID INT [PK], Professor_Name VARCHAR(100), info VARCHAR(100));
+GPAS (CourseSubject VARCHAR(100) [PK] [NOT NULL], CourseNumber INT [NOT NULL], NetId VARCHAR(50) INT [NOT NULL], Section INT [PK] [NOT NULL], Instructor VARCHAR(50), countGPA DECIMAL(10, 2), avgGPA DECIMAL(10, 2), gpa_1_8 DECIMAL(10, 2), gpa_1_6 DECIMAL(10, 2), gpa_5_5 DECIMAL(10, 2), gpa_7_8 DECIMAL(10, 2), topQuanrtGPA DECIMAL(10, 2), medianGPA DECIMAL(10, 2), bottomQuartGPA DECIMAL(10, 2), gpa_top DECIMAL(10, 2), gpa_bottom DECIMAL(10, 2), stddevDiff DECIMAL(10, 2), CourseTitle VARCHAR(100))
 
-Belong_to (Department_ID INT [PK] [FK to Department.Department_ID], Student_ID INT [PK] [FK to Student.Student_ID]);
-
-Enroll_in (Student_ID INT [PK] [FK to Student.Student_ID], CRN INT [PK] [FK to Course.CRN]);
-
-Prereq (CRN INT [PK] [FK to Course.CRN], Pre_CRN INT [PK] [FK to Course.CRN]);
-
-In (PID INT [PK] [FK to Professor.PID], Department_ID INT [PK] [FK to Department.Department_ID]);
-
-Teach (PID INT [PK] [FK to Professor.PID], CRN INT [PK] [FK to Course.CRN]);
+Enroll_in (UIN INT [NOT NULL] [PK] [FK To Students.UIN], CRN INT [NOT NULL] [PK] [FK to Courses.CRN])
 
 ## Description and Assumption
 
-1. **Account** - Account table stores all the login information, including the students and the administrators. Each user will get a unique AccountID(AID) when they sign up. Every student can only have one account in our platform.
-2. **Student** - Each student is uniquely identified by studentID, which is the same as the UID that we currently have. We think that every student might have different majors offered by different department.
-3. **Department** - Department table stores all the department in our college. Each department is uniquely indentified by it's departmentID
-4. **Professor** - Professor is uniquely identified by ProfessorID(PID), we assume that professor can work for multiple different departments at the same time.
-5. **Course** - Each course is uniquely identified by Course Registration Number(CRN). Every department will offer any number of courses, every professor can 
-teach any number of courses in one single semester. And some course might be taught by more than one professor. Student can enroll in multiple courses in each semester. We assume for some high level courses, there might be any number of prerequisite courses. 
+1. **Account** - Account table stores all the login information, including the students and the professor (Administrator). Each user will get a unique NetId when they sign up. Every student can only have one account in our platform.
+2. **Student** - Each student is uniquely identified by UIN. We think that every student might have different majors offered by different department.
+3. **Professor** - Professor is uniquely identified by NetId.
+4. **Course** - Each course is uniquely identified by Course Registration Number(CRN), Year, and Term. Every professor can 
+teach any number of courses in one single semester. And some course might be taught by more than one professor. Student can enroll in multiple courses in each semester. 
+5. **GPA** - This table stores the GPA information of each course. Each GPA information is uniquely identified by CourseSubject, CourseNumber, Section, and the Professor NetId. 
 
