@@ -130,8 +130,8 @@ def key_word_search(result, key_word):
                 df_out = df_sub
                 records = df_out.to_records(index=False)
                 new_values = list(records)
-                if len(new_values) > 5:
-                    new_values = new_values[:5]
+                if len(new_values) > 10:
+                    new_values = new_values[:10]
                 new_values.sort(key=lambda course: course[5])
                 return new_values
                 
@@ -210,6 +210,57 @@ def key_word_search(result, key_word):
     return new_values
 
 
+@app.route("/easy", methods = ['GET', 'POST'])
+def easy():
+    sql = "select C.CRN, C.Subject, C.Number, C.Name, MAX(avgGPA) \
+            from CoursesNew C INNER JOIN GPAsNew G on C.Subject = \
+            G.CourseSubject and C.Number = G.CourseNumber WHERE \
+            C.Subject = 'CS' GROUP BY C.CRN, C.Subject, C.Number, C.Name HAVING MAX(avgGPA) > 3.8;"
+    try:
+        mycursor = mydb.cursor() 
+        mycursor.execute(sql)
+    except:
+        abort(400, "fail to get record")
+
+    result = {}
+    result['query_string'] = sql
+    result['data'] = {}
+    result['data']['labels'] = [row[0] for row in mycursor.description]
+    # print([type(row) for row in mycursor])
+    result['data']['values'] = [row for row in mycursor]
+
+
+    new_result = result['data']['values']
+    if len(new_result) > 10:
+        new_result = new_result[:10]
+    return render_template('easy_hard.html', search=new_result, enrollment=None)
+
+@app.route("/tough", methods = ['GET', 'POST'])
+def tough():
+    sql = "select C.CRN, C.Subject, C.Number, C.Name, MAX(avgGPA) \
+            from CoursesNew C INNER JOIN GPAsNew G on C.Subject = \
+            G.CourseSubject and C.Number = G.CourseNumber WHERE \
+            C.Subject = 'CS' GROUP BY C.CRN, C.Subject, C.Number, C.Name HAVING MAX(avgGPA) < 3.2;"
+    try:
+        mycursor = mydb.cursor() 
+        mycursor.execute(sql)
+    except:
+        abort(400, "fail to get record")
+
+    result = {}
+    result['query_string'] = sql
+    result['data'] = {}
+    result['data']['labels'] = [row[0] for row in mycursor.description]
+    # print([type(row) for row in mycursor])
+    result['data']['values'] = [row for row in mycursor]
+
+    new_result = result['data']['values']
+
+    
+    print(new_result)
+    if len(new_result) > 10:
+        new_result = new_result[:10]
+    return render_template('easy_hard.html', search=new_result, enrollment=None)
 
 @app.route("/search", methods = ['GET', 'POST'])
 def search():
@@ -240,22 +291,45 @@ def search():
     if new_result == None:
         return render_template('enroll.html', search=[], enrollment=None)
     else:
-        result_arr = np.array(result['data']['values'])
-        crn = result_arr[:,0]
-        subject = result_arr[:,4]
-        number = result_arr[:,5]
-        agpa = {}
-        for i in range(len(subject)):
-            sub = str(subject[i])
-            num = str(number[i])
-            sql =  "select Subject, Number, SUM(avgGPA * countGPA) / SUM(countGPA) as average_GPA\
-                    from GPAs G join CoursesNew C on G.NetId = C.NetId and G.course = C.Subject + ' ' + CAST(C.Number AS varchar)\
-                    where Subject = " + sub + " and Number = " + num + \
-                    " group by Subject, Number"
-            mycursor = mydb.cursor() 
-            mycursor.execute(sql)
+        # crn = []
+        # subject = []
+        # number = []
+        # for i in range(len(new_result)):
+        #     # print(new_result[i][4], new_result[i][5], new_result[i])
+        #     crn.append(new_result[i][0])
+        #     subject.append("'" + new_result[i][4] + "'")
+        #     number.append(str(new_result[i][5]))
+        
+        # # subject_name = subject.copy()
+        # # for i in range(len(number)):
+        # #     subject_name[i] = "'" + subject[i] + str(number[i]) + "'"
+        # # sn = ', '.join(subject_name)
 
-    return render_template('enroll.html', search=new_result, enrollment=None)
+        # s = ', '.join(subject)
+        # n = ', '.join(number)
+
+
+        # sql =  "select C.Subject, C.Number, SUM(avgGPA * countGPA) / SUM(countGPA) as average_GPA \
+        #         from GPAs G join CoursesNew C on G.NetId = C.NetId and G.CourseSubject = C.Subject and G.CourseNumber = C.Number \
+        #         where C.subject in (" + s + ") group by C.Subject, C.Number \
+        #         intersect \
+        #         select C.Subject, C.Number, SUM(avgGPA * countGPA) / SUM(countGPA) as average_GPA \
+        #         from GPAs G join CoursesNew C on G.NetId = C.NetId and G.CourseSubject = C.Subject and G.CourseNumber = C.Number \
+        #         where C.Number in (" + n + ") group by C.Subject, C.Number ;"
+        # print(sql)        
+        
+        # mycursor = mydb.cursor() 
+        # mycursor.execute(sql)
+
+        # # agpa = {}
+        # # agpa['query_string'] = sql
+        # # agpa['data'] = {}
+        # # agpa['data']['labels'] = [row[0] for row in mycursor.description]
+        # agpa = [row for row in mycursor]
+        # new_result += agpa 
+
+
+        return render_template('enroll.html', search=new_result, enrollment=None)
         
 
 # def check_enroll(crn, nid):
