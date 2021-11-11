@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="/static/css/result.css">
+  <link rel="stylesheet" type="text/css" href="/static/css/enroll.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <meta charset="utf-8">
+  <title>Enroll Page</title>
+</head>
+<body>
+  <nav class="navbar navbar-custom">
+    <img src="https://cdn.freelogovectors.net/wp-content/uploads/2018/03/UIUC_Logo_University_of_Illinois_at_Urbana-Champaign.png" class="d-inline-block align-top" alt="" width="100%">
+    
+    <!-- Button trigger modal -->
+    <div>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#changePassword">
+        Change Password
+      </button>
+      <a href='/'><button type="button" class="btn btn-primary">
+        New Search
+      </button></a>
+      <a href='/enrollmentInfomation'><button type="button" class="btn btn-primary">
+        Your Course
+      </button></a>
+      <a href='/easy'><button type="button" class="btn btn-primary">
+        Show me easy course!
+      </button></a>
+      <a href='/tough'><button type="button" class="btn btn-primary">
+        Show me tough courses!
+      </button></a>
+    </div>
+
+    
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="changePassword" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="ModalLabel">Change Password</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form action="{{ url_for('changePassword') }}" method="POST">
+              <div class="form-group">
+                <label for="originalpassword">Original Password</label>
+                <input type="password" class="form-control" name="originalpassword" placeholder="Password" required>
+              </div>
+              <div class="form-group">
+                <label for="newpassword">New Password</label>
+                <input type="password" class="form-control" name="newpassword" placeholder="Password" required>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <p class="h1 text-center"> Search Courses </p>
+  <div class="container">
+    <div class="row d-flex justify-content-center ">
+        <div class="col-md-6">
+          <form action="{{ url_for('search') }}" method="POST" class="input-group">
+              <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" name="search-input" required >
+              <button type="submit" class="btn btn-outline-primary" id="search-button">search</button>
+          </form>
+        </div>
+    </div>
+  </div>
+  
+  {% if  search != None and search|length > 0 %}
+         <div class="h3 text-center"> Search Result: </div>
+               {% for value in search %}
+                  <div class="card text-center">
+                     <div class="card-header">
+                        {{"CRN: " + value[0]|string}}
+                     </div>
+                     <div class="card-body">
+                        <h4 class="card-title">
+                           {{value[1] + " " + value[2]|string + ": " + value[3]|string}}
+                           <br>
+                           {{"Average GPA: " + value[4]|string}}
+                        </h4>
+                        <form action="/enroll" method="POST">
+                           <button name="enrollBtn" class="btn btn-primary" type="submit hidden" class="btn btn-outline-primary" value="{{value[0]|string}}" >Enroll</button>
+                        </from>
+                     </div>
+                  </div>
+               {% endfor %}
+      {% elif search != None and search|length == 0 %}
+               <p class="h2 text-center"> No courses found! </p>
+      {% endif %}
+</body>
+
+
+</html>
