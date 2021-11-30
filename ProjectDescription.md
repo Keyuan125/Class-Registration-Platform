@@ -37,13 +37,21 @@ The Second part is the student data. Since we are unable to get the actual stude
 ## Functionalities
 
 ### Data Stored
-We’ll store student, course, professor, enrollment, and account information into our database. 
+We’ll store student, course, professor, enrollment, GPA and account information into our database. 
+
+- student: basic information about the students, such as NetId, UIN, Department
+- account: login information, such as NetId, password and user's role
+- course: course information from course explorer
+- professor: such as communication methods, personal website from college websites
+- enrollent: a record of students' course selection
+- GPA: GPA distribution of the professor's previous courses
 
 ### Basic Functions 
 ~~Our website will allow students to search, register, and drop classes; allow administrators to perform any tasks(including delete a course, overwrite registration, etc)~~
-- Allow students and administrators to log in to our registration platform
-- Students will be able to search, register, and drop classes
-- Administrators are able to perform any tasks(including delete a course, overwrite registration, etc).
+- Allow students and administrators to log in to our registration platform, and change password
+- Students will be able to search for courses with keyword search. Our project will allow students to search for courses by entering any information related to courses, including but not limited to CRN, Subject, Name, and Description
+- Students can easily enroll/drop any courses within our platform
+- Administrators are able to perform any tasks, such as deleting a course, overwrite registration, update course information, etc.
 ### Creative Component
 
 We plan to add multiple components to our system to help students make decisions while browsing courses. 
