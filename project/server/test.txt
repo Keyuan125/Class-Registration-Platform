@@ -1,0 +1,33 @@
+select L.CSN from 
+
+(select CSN, SEPSN from
+(select CSN, PSN, Sum(CEPSN >= 1) as SEPSN from
+(select CSN, PSN, Count(EPSN) as CEPSN from 
+
+(select distinct Prerequisite.CourseSubNum as CSN, 
+Prerequisite.PreSubNum as PSN, Prerequisite.EquPreSubNum as EPSN 
+from Students join Enrollments on Students.UIN = Enrollments.UIN 
+join (select concat(Subject, ' ', Number) as SubNum, CRN from Courses) T on T.CRN = Enrollments.CRN 
+join Prerequisite on T.SubNum = Prerequisite.EquPreSubNum where Students.UIN = 2000101) M 
+
+GROUP BY CSN, PSN) N
+GROUP BY CSN, PSN) K) P
+
+
+join
+
+
+(select CourseSubNum as CSN, Count(PreSubNum)  as CPSN
+from (select distinct CourseSubNum, PreSubNum from Prerequisite) A join 
+
+(select distinct Prerequisite.CourseSubNum as CSN 
+from Students join Enrollments on Students.UIN = Enrollments.UIN 
+join (select concat(Subject, ' ', Number) as SubNum, CRN from Courses) T on T.CRN = Enrollments.CRN 
+join Prerequisite on T.SubNum = Prerequisite.EquPreSubNum where Students.UIN = 2000101) M 
+
+on M.CSN = A.CourseSubNum
+GROUP BY CourseSubNum) L
+
+on P.CSN = L.CSN
+Where P.SEPSN = L.CPSN
+
