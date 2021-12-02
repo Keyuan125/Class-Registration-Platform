@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import re
 from fuzzywuzzy import fuzz
 def key_word_search(result, key_word):
     '''

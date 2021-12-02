@@ -5,7 +5,8 @@ import pandas as pd
 import numpy as np
 from fuzzywuzzy import fuzz
 from utility.key_word_search import key_word_search
-from utility.prereq import prereq
+from utility.prereq import prerequisite
+
 
 app = Flask(__name__) 
 
@@ -16,9 +17,13 @@ mydb = mysql.connector.connect(
             password='!1234QWERasdf')
 
 
-@app.route('/', methods=['GET'])
+@app.route('/login', methods=['GET'])
 def loginPage():
-    return render_template('enroll.html', search=None, enrollment=None)
+    return render_template('login.html')
+
+@app.route('/', methods=['GET'])
+def mainPage():
+    return render_template('easy_hard.html', search=None, enrollment=None)
 
 
 
@@ -89,8 +94,6 @@ def search():
     except:
         abort(400, "fail to get record") 
 
-    # print([type(row[0]) for row in mycursor.description]) 
-    # print([row for row in mycursor])
     result = {}
     result['query_string'] = sql
     result['data'] = {}
@@ -101,50 +104,71 @@ def search():
 
     new_result = key_word_search(result['data'], searchString)
     if new_result == None:
-        return render_template('enroll.html', search=[], enrollment=None)
+        return render_template('easy_hard.html', search=[], enrollment=None)
     else:
-        # crn = []
-        # subject = []
-        # number = []
-        # for i in range(len(new_result)):
-        #     # print(new_result[i][4], new_result[i][5], new_result[i])
-        #     crn.append(new_result[i][0])
-        #     subject.append("'" + new_result[i][4] + "'")
-        #     number.append(str(new_result[i][5]))
-        
-        # # subject_name = subject.copy()
-        # # for i in range(len(number)):
-        # #     subject_name[i] = "'" + subject[i] + str(number[i]) + "'"
-        # # sn = ', '.join(subject_name)
-
-        # s = ', '.join(subject)
-        # n = ', '.join(number)
-
-
-        # sql =  "select C.Subject, C.Number, SUM(avgGPA * countGPA) / SUM(countGPA) as average_GPA \
-        #         from GPAs G join CoursesNew C on G.NetId = C.NetId and G.CourseSubject = C.Subject and G.CourseNumber = C.Number \
-        #         where C.subject in (" + s + ") group by C.Subject, C.Number \
-        #         intersect \
-        #         select C.Subject, C.Number, SUM(avgGPA * countGPA) / SUM(countGPA) as average_GPA \
-        #         from GPAs G join CoursesNew C on G.NetId = C.NetId and G.CourseSubject = C.Subject and G.CourseNumber = C.Number \
-        #         where C.Number in (" + n + ") group by C.Subject, C.Number ;"
-        # print(sql)        
-        
-        # mycursor = mydb.cursor() 
-        # mycursor.execute(sql)
-
-        # # agpa = {}
-        # # agpa['query_string'] = sql
-        # # agpa['data'] = {}
-        # # agpa['data']['labels'] = [row[0] for row in mycursor.description]
-        # agpa = [row for row in mycursor]
-        # new_result += agpa 
-
-
-        return render_template('enroll.html', search=new_result, enrollment=None)
+        return render_template('easy_hard.html', search=new_result, enrollment=None)
         
 
 # def check_enroll(crn, nid):
+def check_pre(crn):
+    sql = "select Subject, Number from Courses where CRN = " + str(crn) + " ;"
+    try:
+        mycursor = mydb.cursor() 
+        mycursor.execute(sql)
+    except:
+        abort(400, "fail to get record")    
+
+    result = {}
+    result['query_string'] = sql
+    result['data'] = {}
+    result['data']['labels'] = [row[0] for row in mycursor.description]
+    result['data']['values'] = [row for row in mycursor]
+    sub, num = result['data']['values'][0]
+    SubNum = sub + ' ' + str(num)     
+
+        
+# def check_pre(crn):
+#     sql = "select Subject, Number, Description from Courses where CRN = " + str(crn) + " ;"
+#     try:
+#         mycursor = mydb.cursor() 
+#         mycursor.execute(sql)
+#     except:
+#         abort(400, "fail to get record") 
+
+#     result = {}
+#     result['query_string'] = sql
+#     result['data'] = {}
+#     result['data']['labels'] = [row[0] for row in mycursor.description]
+#     result['data']['values'] = [row for row in mycursor]
+#     sub, num, des = result['data']['values'][0]
+#     SubNum = sub + ' ' + str(num)
+#     # pre = prerequisite(des)
+
+#     sql = "select * from Prerequiste where CourseSubNum = '" + SubNum + "';"
+#     try:
+#         mycursor = mydb.cursor() 
+#         mycursor.execute(sql)
+#     except:
+#         abort(400, "fail to get record") 
+
+#     result = {}
+#     result['query_string'] = sql
+#     result['data'] = {}
+#     result['data']['labels'] = [row[0] for row in mycursor.description]
+#     result['data']['values'] = [row for row in mycursor]
+
+#     if (result['data']['values'] == []):
+#         pre = prerequisite(des)
+#         flag = update_pre(SubNum, pre)
+#         if flag == True:
+#             return True
+#         else:
+#             return check_pre(crn)
+    
+    
+
+
+
 
 # Take CRN and NetId (HARDCODE THIS FOR NOW), insert to enrollment table, return TRUE/FALSE
 @app.route("/enroll", methods = ['GET', 'POST'])
@@ -178,7 +202,7 @@ def enroll():
         print('already enrolled')
 
     enrollment = show_enrollment()
-    return render_template('enroll.html', search=None, enrollment=enrollment)
+    return render_template('easy_hard.html', search=None, enrollment=enrollment)
 
 
 
@@ -199,7 +223,7 @@ def drop():
         abort(400, "fail to get record") 
 
     enrollment = show_enrollment()
-    return render_template('enroll.html', search=None, enrollment=enrollment)
+    return render_template('easy_hard.html', search=None, enrollment=enrollment)
 
 
 
@@ -234,13 +258,13 @@ def changePassword():
         print('successly change password')
 
     enrollment = show_enrollment()
-    return render_template('enroll.html', search=None, enrollment=enrollment)
+    return render_template('easy_hard.html', search=None, enrollment=enrollment)
 
 
 @app.route("/enrollmentInfomation", methods = ['GET', 'POST'])
 def enrollmentInfomation():
     enrollment = show_enrollment()
-    return render_template('enroll.html', search=None, enrollment=enrollment)
+    return render_template('easy_hard.html', search=None, enrollment=enrollment)
 
 
 # Take UIN as an parameter, return the enrollment course of this student

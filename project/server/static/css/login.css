@@ -1,4 +1,4 @@
-.center{
+/* .center{
     height: 100%;
     display: flex;
     align-items: center;
@@ -29,7 +29,7 @@
     width: 296px;
     border-radius: 2px;
     padding-left: 20px;
-    /* color: #c1c1c1; */
+    /* color: #c1c1c1; 
   }
   
   .inputPassword {
@@ -41,7 +41,7 @@
     width: 296px;
     border-radius: 2px;
     padding-left: 20px;
-    /* color: #c1c1c1; */
+    /* color: #c1c1c1; 
   }
   
   .btn {
@@ -57,4 +57,9 @@
     letter-spacing: 3px;
     font-size: 18px;
     color: #ffffff;
-  }
+  } */
+
+.h-100 {
+  padding: 20px;
+  background-color: #FF5500;
+}
