@@ -8,13 +8,13 @@ from utility.key_word_search import key_word_search
 from utility.prereq import prerequisite
 
 
-app = Flask(__name__) 
+app = Flask(__name__)
 
 mydb = mysql.connector.connect(
             host='localhost',
-            user='yiyanw3',
-            database='yiyanw3_database',
-            password='!1234QWERasdf')
+            user='root',
+            database='',
+            password='')
 
 
 @app.route('/login', methods=['GET'])
@@ -29,7 +29,7 @@ def mainPage():
 
 @app.route("/rec", methods = ['GET', 'POST'])
 def rec():
-    mycursor = mydb.cursor() 
+    mycursor = mydb.cursor()
     args = [2000101, 'CS']
     mycursor.callproc('findRecommendation', args)
     result = []
@@ -45,8 +45,8 @@ def rec():
 
     # new_result = result['data']['values']
 
-    
-    
+
+
     # if len(new_result) > 10:
     #     new_result = new_result[:10]
     return render_template('rec.html', search=list(set(new_result)), enrollment=None)
@@ -56,15 +56,15 @@ def search():
     searchString = request.form["search-input"]
 
     sql = "select * from Courses;"
-    
+
     # if sql.split()[0].upper() != "SELECT":
     #     abort(400, "must be select")
-    
+
     try:
-        mycursor = mydb.cursor() 
+        mycursor = mydb.cursor()
         mycursor.execute(sql)
     except:
-        abort(400, "fail to get record") 
+        abort(400, "fail to get record")
 
     result = {}
     result['query_string'] = sql
@@ -79,11 +79,11 @@ def search():
         return render_template('enroll.html', search=[], enrollment=None)
     else:
         return render_template('enroll.html', search=new_result, enrollment=None)
-        
+
 # join Courses on Enrollments.CRN = Courses.CRN \
 # def check_enroll(crn, nid):
 def check_pre(UIN, SubNum):
-    
+
     sql = "select L.CSN from \
         (select CSN, SEPSN from\
         (select CSN, PSN, Sum(CEPSN >= 1) as SEPSN from\
@@ -106,12 +106,12 @@ def check_pre(UIN, SubNum):
         GROUP BY CourseSubNum) L\
         on P.CSN = L.CSN\
         Where P.SEPSN = L.CPSN;"
-    
+
     try:
-        mycursor = mydb.cursor() 
+        mycursor = mydb.cursor()
         mycursor.execute(sql)
     except:
-        abort(400, "fail to get record")    
+        abort(400, "fail to get record")
 
     result = {}
     result['query_string'] = sql
@@ -124,12 +124,12 @@ def check_pre(UIN, SubNum):
             return True
     return False
 
-         
 
-        
 
-    
-    
+
+
+
+
 
 
 
@@ -140,9 +140,9 @@ def enroll():
     if request.method == 'POST':
         CRN = request.form['enrollBtn']
     UIN = 2000101
-    sql = "select Subject, Number from Courses where CRN = " + str(CRN) + ";" 
+    sql = "select Subject, Number from Courses where CRN = " + str(CRN) + ";"
     try:
-        mycursor = mydb.cursor() 
+        mycursor = mydb.cursor()
         mycursor.execute(sql)
     except:
         pass
@@ -159,13 +159,13 @@ def enroll():
     if check_pre(UIN, subNum) == False:
         print("Unable to enroll")
         return render_template('enroll.html', search=None, enrollment=None)
-    sql = "select * from Enrollments where UIN = '" + str(UIN) + "' and CRN = " + str(CRN) + ";" 
-    
+    sql = "select * from Enrollments where UIN = '" + str(UIN) + "' and CRN = " + str(CRN) + ";"
+
     if sql.split()[0].upper() != "SELECT":
         abort(400, "must be select")
-    
+
     try:
-        mycursor = mydb.cursor() 
+        mycursor = mydb.cursor()
         mycursor.execute(sql)
     except:
         pass
@@ -174,13 +174,13 @@ def enroll():
         sql = "insert into Enrollments values (" + str(UIN) + ", " + str(CRN) + ");"
         if sql.split()[0].upper() != "INSERT":
             abort(400, "must be insert")
-        
+
         try:
-            mycursor = mydb.cursor() 
+            mycursor = mydb.cursor()
             mycursor.execute(sql)
             mydb.commit()
         except:
-            abort(400, "fail to insert") 
+            abort(400, "fail to insert")
     else:
         print('already enrolled')
 
@@ -199,11 +199,11 @@ def drop():
     UIN = 2000101
     sql = "delete from Enrollments where UIN = '" + str(UIN) + "' and CRN = '" + str(CRN) + "';"
     try:
-        mycursor = mydb.cursor() 
+        mycursor = mydb.cursor()
         mycursor.execute(sql)
         mydb.commit()
     except:
-        abort(400, "fail to get record") 
+        abort(400, "fail to get record")
 
     enrollment = show_enrollment()
     return render_template('enroll.html', search=None, enrollment=enrollment)
@@ -216,16 +216,16 @@ def changePassword():
     originalPassword = request.form["originalpassword"]
     newPassword = request.form["newpassword"]
     NetId = 'AoWu'
-    sql = "select * from Account where NetId = '" +  NetId + "' and PassWord = " + "'" + originalPassword + "';" 
+    sql = "select * from Account where NetId = '" +  NetId + "' and PassWord = " + "'" + originalPassword + "';"
 
     if sql.split()[0].upper() != "SELECT":
         abort(400, "must be select")
-    
+
     try:
-        mycursor = mydb.cursor() 
+        mycursor = mydb.cursor()
         mycursor.execute(sql)
     except:
-        abort(400, "fail to get record") 
+        abort(400, "fail to get record")
 
     if len([row for row in mycursor]) == 0:
         print('wrong password, try again')
@@ -233,11 +233,11 @@ def changePassword():
         sql = "update Account set PassWord = '" + newPassword + "' where NetID = '" + NetId + "';"
 
         try:
-            mycursor = mydb.cursor() 
+            mycursor = mydb.cursor()
             mycursor.execute(sql)
             mydb.commit()
         except:
-            abort(400, "fail to get record") 
+            abort(400, "fail to get record")
         print('successly change password')
 
     enrollment = show_enrollment()
@@ -254,12 +254,12 @@ def enrollmentInfomation():
 def show_enrollment(UIN = 2000101):
 
     sql = "select C.Subject, C.Number, C.Name, C.Section, C.StartTime, C.EndTime, C.DaysofWeek, C.CRN from Enrollments E join Courses C ON C.CRN = E.CRN where UIN = '" + str(UIN) + "';"
-    
+
     try:
-        mycursor = mydb.cursor() 
+        mycursor = mydb.cursor()
         mycursor.execute(sql)
     except:
-        abort(400, "fail to get record") 
+        abort(400, "fail to get record")
 
     result = {}
     result['query_string'] = sql
@@ -274,4 +274,3 @@ def show_enrollment(UIN = 2000101):
 
 if __name__ == '__main__':
     app.run('0.0.0.0', 10056, True)
-
